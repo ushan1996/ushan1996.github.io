@@ -4,7 +4,29 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Ushan Jayamanne Portfolio</title>
-<meta name="description" content="Ushan Jayamanne – Senior Software Engineer building telecom platforms, data pipelines and full stack products.">
+<meta name="description" content="Ushan Jayamanne – Senior Software Engineer building telecom platforms, real-time data pipelines, AI/ML systems and full stack products.">
+<meta name="author" content="Ushan Jayamanne">
+<meta name="theme-color" content="#FFFDF9">
+<link rel="canonical" href="https://ushan1996.github.io/">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:type" content="profile">
+<meta property="og:site_name" content="Ushan Jayamanne">
+<meta property="og:title" content="Ushan Jayamanne – Senior Software Engineer">
+<meta property="og:description" content="Full stack, reporting &amp; data, and AI/ML engineer building telecom platforms and real-time data pipelines for Banglalink, Mobitel, Airtel, Ncell, Hutch and Hemas.">
+<meta property="og:url" content="https://ushan1996.github.io/">
+<meta property="og:image" content="https://ushan1996.github.io/og-image.jpg">
+<meta property="og:image:secure_url" content="https://ushan1996.github.io/og-image.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Ushan Jayamanne, Senior Software Engineer">
+<meta property="profile:first_name" content="Ushan">
+<meta property="profile:last_name" content="Jayamanne">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ushan Jayamanne – Senior Software Engineer">
+<meta name="twitter:description" content="Full stack, reporting &amp; data, and AI/ML engineer building telecom platforms and real-time data pipelines.">
+<meta name="twitter:image" content="https://ushan1996.github.io/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap">
@@ -29,6 +51,7 @@
   color-scheme: light;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 html { scroll-behavior: smooth; }
 body { background: var(--page); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.65; }
 body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 50; background: var(--page); }
@@ -234,6 +257,52 @@ p { margin: 0; text-wrap: pretty; }
 @media (max-width: 1000px) { .sgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 640px) { .sgrid { grid-template-columns: minmax(0, 1fr); } }
 
+/* Mobile menu, show-more, back to top */
+.menu-btn { display: none; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid var(--line); background: var(--page); color: var(--ink); align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+.menu-btn svg { width: 20px; height: 20px; }
+.mnav { display: none; }
+.more-wrap { display: none; justify-content: center; margin-top: 22px; }
+.to-top { position: fixed; right: calc(16px + env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); z-index: 30; width: 48px; height: 48px; border-radius: 50%; border: 0; background: var(--ink); color: var(--on-dark); box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; cursor: pointer; }
+.to-top svg { width: 20px; height: 20px; }
+@media (max-width: 900px) {
+  .menu-btn { display: inline-flex; }
+  .top .wrap > .btn { display: none; }
+  .mnav { display: block; position: absolute; left: 0; right: 0; top: 100%; background: var(--page); border-bottom: 1px solid var(--line); box-shadow: var(--shadow); padding: 4px max(20px, env(safe-area-inset-right, 0px)) 20px max(20px, env(safe-area-inset-left, 0px)); }
+  .mnav a { display: block; padding: 14px 2px; font-weight: 700; font-size: 18px; letter-spacing: -0.01em; text-decoration: none; border-bottom: 1px solid var(--line); }
+  .mnav .btn { display: flex; margin-top: 18px; padding: 0 26px; border: 1.5px solid var(--ink); color: var(--on-dark); }
+}
+@media (max-width: 640px) {
+  body { font-size: 15.5px; }
+  .top .wrap { padding-block: 14px; }
+  .section { padding-block: 56px; }
+  .sec-head { margin-bottom: 26px; gap: 16px; }
+  .lead { font-size: 16.5px; }
+  .hero .wrap { padding-block: 24px 44px; gap: 30px; }
+  .hero .lead { font-size: 16.5px; margin-top: 16px; }
+  .hero .cta { margin-top: 22px; }
+  .hero .cta .btn { flex: 1 1 auto; }
+  .trusted { margin-top: 28px; }
+  .hero-img { max-width: 330px; width: 100%; margin: 0 auto; }
+  .stats { gap: 20px 16px; padding-top: 24px; }
+  .work { min-height: 330px; padding: 22px; }
+  .work .art::after { background: linear-gradient(180deg, rgba(22, 22, 22, 0.1) 0%, rgba(22, 22, 22, 0.96) 60%); }
+  .mini-grid { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px; margin-inline: calc(-1 * max(20px, env(safe-area-inset-left, 0px))); padding-inline: max(20px, env(safe-area-inset-left, 0px)); padding-bottom: 6px; scrollbar-width: none; }
+  .mini-grid::-webkit-scrollbar, .filters::-webkit-scrollbar { display: none; }
+  .mini { flex: 0 0 82%; scroll-snap-align: start; }
+  .filters { flex-wrap: nowrap; overflow-x: auto; margin-inline: calc(-1 * max(20px, env(safe-area-inset-left, 0px))); padding-inline: max(20px, env(safe-area-inset-left, 0px)); scrollbar-width: none; margin-bottom: 20px; }
+  .filter { flex-shrink: 0; }
+  .plist:not(.expanded) .pitem.extra { display: none; }
+  .more-wrap { display: flex; }
+  .pitem { padding: 22px; }
+  .service, .service + .service { padding: 22px 0 !important; }
+  .about-photo { min-height: 330px; padding: 24px; }
+  .role { padding-block: 22px; }
+  .sgroup { padding: 22px; }
+  .faq summary { font-size: 17px; padding-block: 20px; }
+  .cta-main h2 { font-size: 50px; }
+  .foot nav { gap: 12px 16px; }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .btn, .go, .work, .mini { transition: transform .22s ease, box-shadow .22s ease, background .22s ease; }
   .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
@@ -278,7 +347,17 @@ p { margin: 0; text-wrap: pretty; }
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <a class="btn" href="#contact">Let's talk</a>
+    <button class="menu-btn" type="button" id="menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
   </div>
+  <nav class="mnav" id="mnav" aria-label="Mobile" hidden>
+    <a href="#work">Work</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills-detail">Skills</a>
+    <a href="#faq">FAQ</a>
+    <a class="btn" href="#contact">Let's talk</a>
+  </nav>
 </header>
 
 <main>
@@ -421,6 +500,7 @@ p { margin: 0; text-wrap: pretty; }
       <article class="pitem" data-cat="personal"><div class="row"><span class="cat">Personal</span><span class="date">Mar 2022 – Apr 2022</span></div><h3>E-commerce Front End</h3><p>An e-commerce web application front end designed with Vue.js and Vuetify.</p><div class="stack"><span>Vue.js</span><span>Vuetify</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>Responsive UI</span></div></article>
       <article class="pitem" data-cat="personal"><div class="row"><span class="cat">Personal</span><span class="date">Jan 2022 – Mar 2022</span></div><h3>Student Management System</h3><p>A stand-alone desktop application for managing students, built with JavaFX in IntelliJ IDEA and Scene Builder.</p><div class="stack"><span>Java</span><span>JavaFX</span><span>Scene Builder</span><span>IntelliJ IDEA</span><span>OOP</span><span>Desktop App</span></div></article>
     </div>
+    <div class="more-wrap"><button class="btn outline" type="button" id="more-projects" hidden>Show all projects</button></div>
   </div>
 </section>
 
@@ -594,17 +674,40 @@ p { margin: 0; text-wrap: pretty; }
   </div>
 </footer>
 
+<button class="to-top" type="button" id="to-top" aria-label="Back to top" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"></path></svg></button>
+
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { var ba = document.getElementById('blobAnim'); if (ba) ba.remove(); }
+  var plist = document.querySelector('.plist'), moreBtn = document.getElementById('more-projects');
+  function collapse() {
+    var vis = [].filter.call(document.querySelectorAll('.pitem'), function (p) { return !p.hidden; });
+    vis.forEach(function (p, i) { p.classList.toggle('extra', i >= 4); });
+    moreBtn.hidden = vis.length <= 4 || plist.classList.contains('expanded');
+    moreBtn.textContent = 'Show all ' + vis.length + ' projects';
+  }
+  moreBtn.addEventListener('click', function () { plist.classList.add('expanded'); collapse(); });
   var fbtns = document.querySelectorAll('.filter');
   fbtns.forEach(function (b) {
     b.addEventListener('click', function () {
       var f = b.dataset.f;
       fbtns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
       document.querySelectorAll('.pitem').forEach(function (p) { p.hidden = !(f === 'all' || p.dataset.cat === f); });
+      plist.classList.remove('expanded');
+      collapse();
     });
   });
+  collapse();
+
+  var mb = document.getElementById('menu-btn'), mn = document.getElementById('mnav');
+  function setMenu(open) { mn.hidden = !open; mb.setAttribute('aria-expanded', open ? 'true' : 'false'); mb.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); }
+  mb.addEventListener('click', function () { setMenu(mn.hidden); });
+  mn.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !mn.hidden) { setMenu(false); mb.focus(); } });
+
+  var tt = document.getElementById('to-top');
+  window.addEventListener('scroll', function () { tt.hidden = window.scrollY < 900; }, { passive: true });
+  tt.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
   document.querySelectorAll('[data-copy]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var el = document.getElementById(btn.dataset.copy);
