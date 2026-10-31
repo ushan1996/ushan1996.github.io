@@ -1,0 +1,411 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ushan Jayamanne Portfolio</title>
+<meta name="description" content="Ushan Jayamanne – Senior Software Engineer, team lead and data builder.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=DM+Sans:wght@400;500;700&family=Caveat:wght@600&display=swap">
+<style>
+/* Layout: the Guitarist stage template, re-scored for an engineer. Dark stage, brass accent, tall condensed headings; sections run hero → award → about → skills → feature → notes → career "tour dates" → stay in touch → footer. */
+:root {
+  --bg: #0D0D0E;
+  --bg-2: #151517;
+  --panel: #1C1C1F;
+  --ink: #F3EFE8;
+  --muted: #A8A29A;
+  --line: #2C2B2E;
+  --brass: #E0A458;
+  --brass-deep: #B97A31;
+  --font-display: "Oswald", "Arial Narrow", "Segoe UI", sans-serif;
+  --font-body: "DM Sans", "Segoe UI", system-ui, sans-serif;
+  --font-hand: "Caveat", "Segoe Script", cursive;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.75; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 20; background: var(--bg); }
+a { color: var(--brass); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+h1, h2, h3, h4 { font-family: var(--font-display); text-transform: uppercase; margin: 0; line-height: 1.05; text-wrap: balance; letter-spacing: 1px; }
+p { margin: 0; text-wrap: pretty; }
+.wrap { max-width: 1180px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+.sub { font-family: var(--font-hand); color: var(--brass); font-size: 30px; line-height: 1; text-transform: none; letter-spacing: 0; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 28px; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 2px; font-size: 14px; font-weight: 500; text-decoration: none; color: var(--bg); background: var(--brass); border: 1px solid var(--brass); cursor: pointer; }
+.btn:hover { background: var(--brass-deep); border-color: var(--brass-deep); }
+.btn.ghost { background: transparent; color: var(--ink); border-color: var(--ink); }
+.btn.ghost:hover { color: var(--bg); background: var(--ink); }
+
+/* Header */
+.top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10; background: rgba(13, 13, 14, 0.9); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; }
+.logo { font-family: var(--font-display); font-weight: 700; font-size: 24px; letter-spacing: 3px; color: var(--ink); text-decoration: none; text-transform: uppercase; }
+.logo span { color: var(--brass); }
+.menu { list-style: none; display: flex; gap: 30px; margin: 0; padding: 0; }
+.menu a { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 2px; font-size: 14px; color: var(--ink); text-decoration: none; }
+.menu a:hover { color: var(--brass); }
+@media (max-width: 780px) { .menu { gap: 16px; } .menu li:nth-child(n+4) { display: none; } }
+@media (max-width: 460px) { .menu { display: none; } }
+
+/* Hero */
+.hero { position: relative; overflow: hidden; background: radial-gradient(ellipse at 75% 40%, rgba(224, 164, 88, 0.16), transparent 55%), var(--bg); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 40px; align-items: center; padding-block: 80px 70px; }
+.hero h1 { font-size: clamp(56px, 10vw, 132px); font-weight: 700; letter-spacing: 2px; line-height: 0.92; margin-top: 10px; }
+.hero h1 span { display: block; color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+.tagline { display: inline-block; margin-top: 22px; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 3px; font-size: 18px; color: var(--brass); text-decoration: none; border-bottom: 1px solid var(--brass); padding-bottom: 4px; }
+.social { display: flex; gap: 12px; margin-top: 28px; }
+.social a { width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); color: var(--ink); }
+.social a:hover { color: var(--brass); border-color: var(--brass); }
+.social svg { width: 18px; height: 18px; }
+.roles { margin-top: 30px; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 3px; font-size: 15px; color: var(--muted); }
+.roles b { color: var(--brass); font-weight: 400; padding: 0 8px; }
+.quote { margin-top: 34px; padding-left: 22px; border-left: 2px solid var(--brass); max-width: 30em; }
+.quote p { font-size: 18px; font-style: italic; color: var(--ink); }
+.quote cite { display: block; margin-top: 8px; font-style: normal; font-size: 13px; color: var(--muted); letter-spacing: 1px; text-transform: uppercase; }
+.stage { position: relative; justify-self: center; width: min(440px, 100%); }
+.stage .frame { position: relative; aspect-ratio: 4 / 5; max-width: 100%; overflow: hidden; background: var(--panel); }
+.stage .frame img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(0.15) contrast(1.05); }
+.stage .frame::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(13, 13, 14, 0.85)); }
+.stage::before { content: ""; position: absolute; inset: 22px -22px -22px 22px; border: 1px solid var(--brass); z-index: -1; }
+.stage .caption { position: absolute; left: 20px; bottom: 18px; z-index: 1; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 2px; font-size: 14px; }
+.stage .caption small { display: block; color: var(--brass); font-size: 12px; }
+.picks { position: absolute; top: -26px; right: -18px; z-index: 2; display: flex; flex-direction: column; gap: 8px; }
+.pick { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 1px; background: var(--brass); color: var(--bg); padding: 8px 14px; font-size: 13px; font-weight: 600; text-align: center; }
+.pick strong { display: block; font-size: 22px; line-height: 1; }
+@media (max-width: 900px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1fr); padding-block: 56px 80px; }
+  .stage { width: min(360px, 90%); }
+  .picks { right: -6px; }
+}
+
+/* Award strip */
+.award { background: var(--brass); color: var(--bg); }
+.award .wrap { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 30px; align-items: center; padding-block: 34px; }
+.award .medal { width: 72px; height: 72px; border-radius: 50%; border: 2px solid var(--bg); display: flex; align-items: center; justify-content: center; }
+.award .medal svg { width: 34px; height: 34px; }
+.award h2 { font-size: 28px; }
+.award p { font-size: 16px; margin-top: 4px; }
+.award .year { font-family: var(--font-display); font-size: 56px; font-weight: 700; line-height: 1; }
+@media (max-width: 700px) { .award .wrap { grid-template-columns: minmax(0, 1fr); gap: 14px; } .award .year { font-size: 40px; } }
+
+/* Sections */
+.section { padding-block: 110px; scroll-margin-top: 70px; }
+.section.alt { background: var(--bg-2); }
+.title { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+.title h2 { font-size: clamp(38px, 5.5vw, 64px); font-weight: 600; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 70px; align-items: center; }
+.split .text { display: flex; flex-direction: column; gap: 18px; color: var(--muted); font-size: 17px; }
+.split .text strong { color: var(--ink); }
+@media (max-width: 900px) { .split { grid-template-columns: minmax(0, 1fr); gap: 44px; } }
+
+.about-img { position: relative; }
+.about-img .frame { aspect-ratio: 1 / 1; max-width: 100%; overflow: hidden; }
+.about-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.1); }
+.about-img .tag { position: absolute; right: -14px; bottom: 28px; background: var(--bg); border: 1px solid var(--brass); padding: 16px 20px; font-family: var(--font-display); text-transform: uppercase; letter-spacing: 1px; }
+.about-img .tag strong { display: block; font-size: 40px; color: var(--brass); line-height: 1; }
+.about-img .tag span { font-size: 13px; color: var(--muted); }
+@media (max-width: 900px) { .about-img { max-width: 440px; } .about-img .tag { right: 10px; } }
+
+.console { background: var(--panel); border: 1px solid var(--line); padding: 26px; font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: 14px; line-height: 1.9; color: var(--muted); overflow-x: auto; }
+.console .k { color: var(--brass); }
+.console .v { color: var(--ink); }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 60px; margin-top: 16px; }
+.skill { display: flex; flex-direction: column; gap: 10px; }
+.skill .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+.skill h4 { font-size: 20px; font-weight: 500; letter-spacing: 1.5px; }
+.skill .row span { font-size: 14px; color: var(--muted); }
+.skill .bar { height: 3px; background: var(--line); position: relative; }
+.skill .bar i { position: absolute; inset: 0 auto 0 0; background: var(--brass); }
+.skill p { color: var(--muted); font-size: 15px; }
+@media (max-width: 780px) { .skills { grid-template-columns: minmax(0, 1fr); } }
+
+/* Feature (Guitar lessons) */
+.feature { position: relative; min-height: 460px; display: flex; align-items: center; overflow: hidden; background: radial-gradient(ellipse at 20% 50%, rgba(224, 164, 88, 0.2), transparent 60%), #111113; border-block: 1px solid var(--line); }
+.feature .wrap { position: relative; z-index: 1; padding-block: 90px; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 60px; align-items: center; }
+.feature h2 { font-size: clamp(38px, 6vw, 72px); }
+.feature p { color: var(--muted); font-size: 18px; margin-top: 18px; }
+.flow { display: flex; flex-direction: column; gap: 10px; }
+.flow .stepbox { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 18px; background: var(--panel); border: 1px solid var(--line); font-family: var(--font-display); text-transform: uppercase; letter-spacing: 1.5px; }
+.flow .stepbox span { color: var(--muted); font-family: var(--font-body); text-transform: none; letter-spacing: 0; font-size: 14px; text-align: right; }
+.flow .arrow { align-self: center; color: var(--brass); line-height: 1; font-size: 18px; }
+@media (max-width: 900px) { .feature .wrap { grid-template-columns: minmax(0, 1fr); } }
+
+/* Notes (Tab, techniques & tips) */
+.notes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin-top: 10px; }
+.note { padding: 30px; background: var(--panel); border-top: 3px solid var(--brass); display: flex; flex-direction: column; gap: 12px; }
+.note h3 { font-size: 22px; font-weight: 500; }
+.note p { color: var(--muted); font-size: 15px; }
+.note .stack { font-size: 13px; color: var(--brass); letter-spacing: 1px; text-transform: uppercase; font-family: var(--font-display); margin-top: auto; }
+@media (max-width: 900px) { .notes { grid-template-columns: minmax(0, 1fr); } }
+
+/* Tour dates */
+.tour { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.gig { display: grid; grid-template-columns: 120px minmax(0, 1fr) minmax(0, 1.2fr) auto; gap: 24px; align-items: center; padding-block: 26px; border-bottom: 1px solid var(--line); }
+.gig .date { font-family: var(--font-display); line-height: 1; }
+.gig .date strong { display: block; font-size: 44px; font-weight: 600; color: var(--brass); }
+.gig .date span { font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+.gig h3 { font-size: 24px; font-weight: 500; }
+.gig .venue { color: var(--muted); font-size: 15px; }
+.gig .btn { min-height: 44px; padding: 0 20px; font-size: 13px; }
+.gig:hover { background: linear-gradient(90deg, rgba(224, 164, 88, 0.06), transparent); }
+@media (max-width: 820px) { .gig { grid-template-columns: 90px minmax(0, 1fr); gap: 10px 18px; } .gig .venue, .gig .btn { grid-column: 2; } .gig .btn { justify-self: start; } .gig .date strong { font-size: 34px; } }
+
+/* Projects grid */
+.projects { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2px; background: var(--line); border: 1px solid var(--line); }
+.project { background: var(--bg-2); padding: 34px 30px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.project:hover { background: var(--panel); }
+.project .client { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 2px; font-size: 13px; color: var(--brass); }
+.project h3 { font-size: 24px; font-weight: 500; }
+.project p { color: var(--muted); font-size: 15px; }
+.project .stack { margin-top: auto; padding-top: 8px; font-size: 13px; color: var(--ink); opacity: 0.8; }
+@media (max-width: 960px) { .projects { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .projects { grid-template-columns: minmax(0, 1fr); } }
+
+/* Stay in touch */
+.touch { position: relative; text-align: center; background: radial-gradient(ellipse at 50% 0%, rgba(224, 164, 88, 0.25), transparent 60%), linear-gradient(180deg, #17140F, var(--bg)); border-top: 1px solid var(--line); }
+.touch .wrap { padding-block: 110px; display: flex; flex-direction: column; align-items: center; gap: 18px; }
+.touch h2 { font-size: clamp(40px, 6vw, 76px); }
+.touch p { color: var(--muted); max-width: 36em; font-size: 17px; }
+.mailbox { display: flex; width: min(560px, 100%); margin-top: 16px; border: 1px solid var(--brass); }
+.mailbox span { flex: 1; min-width: 0; display: flex; align-items: center; padding: 0 18px; font-size: 17px; overflow-wrap: anywhere; text-align: left; }
+.mailbox .btn { flex-shrink: 0; }
+.alt-contacts { display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; margin-top: 10px; font-size: 15px; color: var(--muted); }
+
+/* Footer */
+footer { background: #080809; border-top: 1px solid var(--line); }
+footer .wrap { padding-block: 70px 30px; }
+.fgrid { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(4, minmax(0, 1fr)); gap: 36px; }
+.fgrid p { color: var(--muted); font-size: 15px; margin-top: 14px; max-width: 26em; }
+.fgrid h4 { font-size: 16px; font-weight: 500; letter-spacing: 2px; color: var(--brass); margin-bottom: 14px; }
+.fgrid ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; color: var(--muted); font-size: 15px; }
+.fgrid ul a { color: var(--muted); text-decoration: none; }
+.fgrid ul a:hover { color: var(--brass); }
+.copyright { margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; color: var(--muted); font-size: 14px; }
+@media (max-width: 960px) { .fgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .fgrid > div:first-child { grid-column: 1 / -1; } }
+@media (max-width: 480px) { .fgrid { grid-template-columns: minmax(0, 1fr); } }
+
+@media (prefers-reduced-motion: no-preference) {
+  .btn, .social a, .project, .gig { transition: background .2s ease, color .2s ease, border-color .2s ease; }
+  .hero-copy > * { animation: rise .9s cubic-bezier(.2, .7, .2, 1) both; }
+  .hero-copy > *:nth-child(2) { animation-delay: .1s; }
+  .hero-copy > *:nth-child(3) { animation-delay: .2s; }
+  .hero-copy > *:nth-child(4) { animation-delay: .3s; }
+  .hero-copy > *:nth-child(5) { animation-delay: .4s; }
+  .hero-copy > *:nth-child(6) { animation-delay: .5s; }
+  .skill .bar i { animation: fill 1.4s cubic-bezier(.2, .7, .2, 1) both; }
+}
+@keyframes rise { from { transform: translateY(20px); } }
+@keyframes fill { from { transform: scaleX(0.2); transform-origin: left; } to { transform: scaleX(1); transform-origin: left; } }
+</style>
+
+<style>body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#home">UJ<span>.</span>DEV</a>
+    <ul class="menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#career">Career</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-copy">
+      <span class="sub">software engineer &amp; team lead</span>
+      <h1>Ushan <span>Jayamanne</span></h1>
+      <a class="tagline" href="#work">Of Data And Signals</a>
+      <div class="social">
+        <a href="https://www.linkedin.com/in/ushan-jayamanne-05502b1b7/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+        <a href="https://github.com/ushan1996" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.6c3.1-.3 6.4-1.5 6.4-7A5.4 5.4 0 0 0 20 4.8 5 5 0 0 0 19.9 1S18.7.7 16 2.5a13.4 13.4 0 0 0-7 0C6.3.7 5.1 1 5.1 1A5 5 0 0 0 5 4.8a5.4 5.4 0 0 0-1.5 3.7c0 5.4 3.3 6.6 6.4 7a3.4 3.4 0 0 0-.9 2.6V22"></path></svg></a>
+        <a href="#contact" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 6L2 7"></path></svg></a>
+      </div>
+      <div class="roles">Engineer <b>/</b> Team Lead <b>/</b> Data Builder <b>/</b> Mentor</div>
+      <blockquote class="quote">
+        <p>“In data-heavy systems, a good design beats clever code.”</p>
+        <cite>Ushan Jayamanne · on building the SMS billing engine</cite>
+      </blockquote>
+    </div>
+    <div class="stage">
+      <div class="picks" aria-hidden="true">
+        <div class="pick"><strong>40K</strong>TPS</div>
+        <div class="pick"><strong>3+</strong>Years</div>
+      </div>
+      <div class="frame">
+        <img src="ushan.jpg" alt="Portrait of Ushan Jayamanne" width="440" height="550">
+      </div>
+      <div class="caption"><small>Now playing</small>Senior SE · Omobio</div>
+    </div>
+  </div>
+</section>
+
+<section class="award" aria-label="Milestone">
+  <div class="wrap">
+    <div class="medal" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.5 13.2 17 22l-5-3-5 3 1.5-8.8"></path></svg></div>
+    <div>
+      <h2>My Proudest Milestone</h2>
+      <p>Promoted to Senior Software Engineer at Omobio, three years after joining as a trainee, now leading a nine-member team.</p>
+    </div>
+    <div class="year">2026</div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap split">
+    <div class="about-img">
+      <div class="frame"><img src="ushan.jpg" alt="" width="520" height="520"></div>
+      <div class="tag"><strong>9</strong><span>Engineers I lead</span></div>
+    </div>
+    <div class="text">
+      <div class="title"><span class="sub">who I am</span><h2>About Me</h2></div>
+      <p>I'm a <strong>Senior Software Engineer at Omobio (Pvt) Ltd</strong> in Sri Lanka. I joined in 2023 as a trainee full stack developer and today lead the team behind the <strong>Banglalink SMSC</strong> platform, which carries SMS traffic for one of Bangladesh's largest operators.</p>
+      <p>My work sits where telecom, data and the web meet: gateways that handle tens of thousands of messages a second, pipelines that turn their records into reports and bills, and the portals people use every day. I've delivered for <strong>Banglalink, Mobitel, Airtel, Ncell, Hutch and Hemas Hospital</strong>.</p>
+      <div><a class="btn" href="#contact">Work with me</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="section alt">
+  <div class="wrap split">
+    <div class="text">
+      <div class="title"><span class="sub">on the job</span><h2>Production &amp; Lab</h2></div>
+      <p>By day I keep <strong>production systems</strong> running at scale: 16 SMSC servers, real-time CDR pipelines and dashboards operators watch around the clock.</p>
+      <p>In the lab I'm building <strong>machine-learning models that catch spam campaigns in real time</strong>, and experimenting with LLMs like Gemma, Claude and ChatGPT to speed up how my team works.</p>
+    </div>
+    <div class="console" aria-label="Current status">
+      <div><span class="k">smsc.nodes</span> = <span class="v">16</span></div>
+      <div><span class="k">smsc.peak_tps</span> = <span class="v">40,000</span></div>
+      <div><span class="k">rtcd.inference</span> = <span class="v">"&lt; 1 ms"</span></div>
+      <div><span class="k">billing.reports</span> = <span class="v">70</span></div>
+      <div><span class="k">cdr.write_sla</span> = <span class="v">"4 min ✓"</span></div>
+      <div><span class="k">team.size</span> = <span class="v">9</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="skills">
+  <div class="wrap">
+    <div class="title"><span class="sub">what I play best</span><h2>Professional Skills</h2></div>
+    <p style="color: var(--muted); max-width: 40em;">The instruments I reach for every day, from the front end to the data layer.</p>
+    <div class="skills">
+      <div class="skill"><div class="row"><h4>Python &amp; PHP</h4><span>Back-end</span></div><div class="bar"><i style="width: 92%"></i></div><p>FastAPI, PHP MVC, REST APIs, report engines and automation.</p></div>
+      <div class="skill"><div class="row"><h4>ClickHouse &amp; SQL</h4><span>Data</span></div><div class="bar"><i style="width: 88%"></i></div><p>Materialized views, data modelling, MariaDB, MySQL, MongoDB.</p></div>
+      <div class="skill"><div class="row"><h4>ReactJS &amp; SvelteKit</h4><span>Front-end</span></div><div class="bar"><i style="width: 85%"></i></div><p>Admin portals, dashboards, Ext JS and Vue.js interfaces.</p></div>
+      <div class="skill"><div class="row"><h4>Telecom SMSC</h4><span>Domain</span></div><div class="bar"><i style="width: 90%"></i></div><p>SMPP, A2P and bulk SMS, CDR processing, SMS firewall, billing.</p></div>
+      <div class="skill"><div class="row"><h4>Machine Learning</h4><span>AI</span></div><div class="bar"><i style="width: 72%"></i></div><p>LightGBM, HDBSCAN, Sentence Transformers, LLM verification.</p></div>
+      <div class="skill"><div class="row"><h4>Docker &amp; CI/CD</h4><span>DevOps</span></div><div class="bar"><i style="width: 78%"></i></div><p>Docker Compose, Jenkins, GitHub Actions, SonarQube, Linux.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="feature" id="work">
+  <div class="wrap">
+    <div>
+      <span class="sub">featured project</span>
+      <h2>Reporting &amp; Billing Engine</h2>
+      <p>For an SMS messaging hub, I designed the backend that turns huge volumes of message events into fast reports and accurate billing data. Complex maths runs once per minute; every higher level just sums the one below. A small Python engine serves <strong style="color: var(--ink)">70 reports</strong> to the PHP application through one simple JSON contract.</p>
+      <div style="margin-top: 28px; display: flex; gap: 12px; flex-wrap: wrap;"><a class="btn" href="#projects">More projects</a><a class="btn ghost" href="https://www.linkedin.com/in/ushan-jayamanne-05502b1b7/" target="_blank" rel="noopener">Read on LinkedIn</a></div>
+    </div>
+    <div class="flow" aria-label="Aggregation levels">
+      <div class="stepbox">Raw events <span>message · audit · SMPP</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="stepbox">Minute <span>all heavy calculation</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="stepbox">Hour · Day · Month · Year <span>sum the level below</span></div>
+      <div class="arrow" aria-hidden="true">↓</div>
+      <div class="stepbox">Python report engine <span>70 reports · JSON</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="title"><span class="sub">how I work</span><h2>Techniques &amp; Tips</h2></div>
+    <div class="notes">
+      <article class="note"><h3>Aggregate once</h3><p>Do the expensive calculation at the smallest time grain, then let every larger report roll up from it. Reports stay fast as data grows.</p><span class="stack">ClickHouse · Materialized views</span></article>
+      <article class="note"><h3>One simple contract</h3><p>Every report takes JSON in and returns JSON out, with pagination, totals and safe parameter binding, so any app can call any report the same way.</p><span class="stack">Python · PHP · SQL</span></article>
+      <article class="note"><h3>Guard the main branch</h3><p>Conventional Commits checked locally and on GitHub, SonarQube on every change, and auto-migrations in Docker so new teammates start in one command.</p><span class="stack">Docker · SonarQube · Git</span></article>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="career">
+  <div class="wrap">
+    <div class="title"><span class="sub">every stop so far</span><h2>Career Tour</h2></div>
+    <div class="tour">
+      <article class="gig"><div class="date"><strong>2026</strong><span>Now</span></div><h3>Senior Software Engineer</h3><div class="venue">Omobio (Pvt) Ltd · leading a 9-member team on Banglalink SMSC, billing engine and ML firewall</div><a class="btn" href="#projects">See work</a></article>
+      <article class="gig"><div class="date"><strong>2024</strong><span>Mar</span></div><h3>Software Engineer</h3><div class="venue">Omobio (Pvt) Ltd · Banglalink SMSC, ClickHouse analytics, Hemas Hospital portal</div><a class="btn" href="#projects">See work</a></article>
+      <article class="gig"><div class="date"><strong>2023</strong><span>Sep</span></div><h3>Associate Software Engineer</h3><div class="venue">Omobio (Pvt) Ltd · Airtel Jersey SMSC, OmobioNG website</div><a class="btn" href="#projects">See work</a></article>
+      <article class="gig"><div class="date"><strong>2023</strong><span>Mar</span></div><h3>Trainee Full Stack Developer</h3><div class="venue">Omobio (Pvt) Ltd · Ncell, Airtel Jersey SMSC</div><a class="btn" href="#projects">See work</a></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="title"><span class="sub">the setlist</span><h2>Selected Projects</h2></div>
+    <div class="projects">
+      <article class="project"><span class="client">SMS Firewall · 2026</span><h3>AI/ML Campaign Detection</h3><p>Catches spam campaigns from 5-minute CDR batches: embeddings and HDBSCAN cluster messages, LightGBM scores them in under 1 ms, an LLM double-checks.</p><span class="stack">Python · LightGBM · Docker · Jenkins</span></article>
+      <article class="project"><span class="client">Banglalink · 2026</span><h3>Dynamic Reporting</h3><p>Real-time CDR analytics with dashboards for success rate, errors, TPS and operator traffic, tuned to meet a 4-minute SLA.</p><span class="stack">Vector · ClickHouse · Superset</span></article>
+      <article class="project"><span class="client">Banglalink · 2025–26</span><h3>SMSC Product &amp; Reports</h3><p>Core SMS centre across 16 servers, with automated reporting at up to 40,000 TPS.</p><span class="stack">Ext JS · PHP · Python · MariaDB</span></article>
+      <article class="project"><span class="client">Hemas Hospital · 2024</span><h3>Healthcare Admin Portal</h3><p>Home care, virtual care, doctors and customers managed in one portal, plus payment-failure reporting.</p><span class="stack">ReactJS · Directus</span></article>
+      <article class="project"><span class="client">Mobitel · Airtel · Ncell · Hutch</span><h3>Telecom SMSC &amp; Self-Care</h3><p>Full stack features and change requests for operators in Sri Lanka, Jersey and Nepal.</p><span class="stack">Ext JS · PHP · ReactJS</span></article>
+      <article class="project"><span class="client">Company &amp; personal</span><h3>OmobioNG &amp; Side Projects</h3><p>Omobio's website in SvelteKit, plus a YouTube-style video app, social media and blog apps built on MERN.</p><span class="stack">SvelteKit · MERN · Firebase</span></article>
+    </div>
+  </div>
+</section>
+
+<section class="touch" id="contact">
+  <div class="wrap">
+    <span class="sub">open to new roles</span>
+    <h2>Stay In Touch</h2>
+    <p>Looking for an engineer for full stack, data or AI/ML work? Send me an email and I'll get back to you.</p>
+    <div class="mailbox"><span id="email">ushandineesha@gmail.com</span><button class="btn" type="button" id="copy">Copy email</button></div>
+    <div class="alt-contacts"><span>+94 71 937 5148</span><span>Kurunegala, Sri Lanka</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div><a class="logo" href="#home">UJ<span>.</span>DEV</a><p>Senior Software Engineer building telecom platforms, data pipelines and full stack apps from Kurunegala, Sri Lanka.</p></div>
+      <div><h4>Stack</h4><ul><li>Python</li><li>PHP</li><li>ReactJS</li><li>ClickHouse</li></ul></div>
+      <div><h4>Clients</h4><ul><li>Banglalink</li><li>Mobitel</li><li>Airtel</li><li>Hemas Hospital</li></ul></div>
+      <div><h4>Contact</h4><ul><li>Kurunegala, Sri Lanka</li><li>+94 71 937 5148</li><li>ushandineesha@gmail.com</li></ul></div>
+      <div><h4>Menu</h4><ul><li><a href="#home">Home</a></li><li><a href="#about">About</a></li><li><a href="#work">Work</a></li><li><a href="#career">Career</a></li><li><a href="#contact">Contact</a></li></ul></div>
+    </div>
+    <div class="copyright"><span>Copyright © <span id="year">2026</span> Ushan Jayamanne</span><span><a href="https://www.linkedin.com/in/ushan-jayamanne-05502b1b7/" target="_blank" rel="noopener">LinkedIn</a> · <a href="https://github.com/ushan1996" target="_blank" rel="noopener">GitHub</a></span></div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+  var btn = document.getElementById('copy');
+  btn.addEventListener('click', function () {
+    var el = document.getElementById('email');
+    var reset = function () { setTimeout(function () { btn.textContent = 'Copy email'; }, 1600); };
+    var fallback = function () {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected'; reset();
+    };
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(el.textContent.trim()).then(function () { btn.textContent = 'Copied'; reset(); }, fallback);
+      } else { fallback(); }
+    } catch (e) { fallback(); }
+  });
+</script>
+
+</body>
+</html>
