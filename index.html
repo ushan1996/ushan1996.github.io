@@ -49,7 +49,8 @@ p { margin: 0; text-wrap: pretty; }
 /* Header */
 .top { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 40; background: rgba(255, 253, 249, 0.88); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
 .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-block: 20px; }
-.logo { font-weight: 700; letter-spacing: 0.32em; font-size: 16px; text-decoration: none; }
+.logo { font-weight: 700; letter-spacing: 0.24em; font-size: 16px; text-decoration: none; white-space: nowrap; }
+@media (max-width: 420px) { .logo { font-size: 13px; letter-spacing: 0.16em; } }
 .nav { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
 .nav a { text-decoration: none; font-weight: 500; font-size: 15px; color: var(--ink-2); }
 .nav a:hover { color: var(--ink); }
@@ -62,12 +63,16 @@ p { margin: 0; text-wrap: pretty; }
 .hero h1 span { color: var(--accent); }
 .hero .lead { margin-top: 26px; max-width: 32em; font-size: 19px; }
 .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
-.trusted { margin-top: 44px; display: grid; grid-template-columns: auto repeat(3, minmax(0, 1fr)); gap: 14px 28px; align-items: center; }
-.trusted small { font-size: 13px; color: var(--ink-2); }
-.trusted span { font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: #9C948A; font-size: 14px; }
+.trusted { margin-top: 40px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: 12px; }
+.trusted small { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-2); }
+.clients { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.clients li { display: inline-flex; align-items: center; gap: 8px; padding: 7px 14px 7px 8px; border-radius: 9999px; background: var(--cream); font-weight: 700; font-size: 14px; }
+.clients li b { font-size: 10.5px; font-weight: 800; letter-spacing: 0.06em; padding: 3px 7px; border-radius: 9999px; background: var(--page); color: var(--accent-ink); }
 .hero-img { position: relative; }
-.hero-img img { display: block; width: 100%; max-width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 30%; border-radius: var(--r-xl); background: var(--cream); }
-.hero-img .badge { position: absolute; left: -24px; bottom: 32px; background: var(--page); border-radius: var(--r-md); box-shadow: var(--shadow); padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
+.hero-img { margin-right: 0; }
+.hero-img img { display: block; width: 100%; max-width: 100%; aspect-ratio: 1 / 1.08; object-fit: cover; object-position: center 22%; background: var(--cream); clip-path: url(#heroBlob); -webkit-clip-path: url(#heroBlob); }
+.hero-img .blob-defs { position: absolute; width: 0; height: 0; }
+.hero-img .badge { position: absolute; left: -10px; bottom: 9%; background: var(--page); border-radius: var(--r-md); box-shadow: var(--shadow); padding: 14px 18px; display: flex; align-items: center; gap: 12px; }
 .hero-img .badge i { width: 10px; height: 10px; border-radius: 50%; background: #2F6B4F; box-shadow: 0 0 0 4px #DCEFE4; }
 .hero-img .badge strong { display: block; font-size: 15px; }
 .hero-img .badge small { color: var(--ink-2); font-size: 13px; }
@@ -76,11 +81,9 @@ p { margin: 0; text-wrap: pretty; }
 .stats span { color: var(--ink-2); font-size: 15px; }
 @media (max-width: 900px) {
   .hero .wrap { grid-template-columns: minmax(0, 1fr); gap: 40px; }
-  .hero-img { max-width: 460px; }
-  .hero-img .badge { left: 12px; }
+  .hero-img { max-width: 520px; margin-right: 0; }
+  .hero-img .badge { left: 0; bottom: 4%; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .trusted { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .trusted small { grid-column: 1 / -1; }
 }
 
 /* Sections */
@@ -196,6 +199,41 @@ p { margin: 0; text-wrap: pretty; }
 .foot a:hover { color: var(--on-dark); }
 @media (max-width: 900px) { .cta-main { grid-template-columns: minmax(0, 1fr); } }
 
+/* All projects */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.filter { min-height: 42px; padding: 0 18px; border-radius: 9999px; border: 1.5px solid var(--line); background: var(--page); color: var(--ink); font-family: var(--font); font-weight: 700; font-size: 14px; cursor: pointer; }
+.filter[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--on-dark); }
+.filter span { color: var(--accent); margin-left: 6px; }
+.filter[aria-pressed="true"] span { color: var(--accent-soft); }
+.plist { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.pitem { background: var(--page); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.pitem .row { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.pitem .cat { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 9999px; background: var(--accent-soft); color: var(--accent-ink); }
+.pitem .date { font-size: 13px; color: var(--ink-2); font-variant-numeric: tabular-nums; }
+.pitem h3 { font-size: 19px; letter-spacing: -0.02em; line-height: 1.25; }
+.pitem p { color: var(--ink-2); font-size: 14.5px; }
+.pitem ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14px; display: flex; flex-direction: column; gap: 3px; }
+.pitem .stack { margin-top: auto; padding-top: 8px; display: flex; flex-wrap: wrap; gap: 6px; }
+.pitem .stack span { font-size: 12.5px; font-weight: 600; padding: 4px 10px; border-radius: 9999px; background: var(--cream); }
+.pitem a.more { font-weight: 700; font-size: 14px; color: var(--accent-ink); text-decoration: none; }
+@media (max-width: 1000px) { .plist { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .plist { grid-template-columns: minmax(0, 1fr); } }
+
+/* Skills in detail */
+.sgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.sgroup { border: 1px solid var(--line); border-radius: var(--r-lg); padding: 26px; display: flex; flex-direction: column; gap: 12px; background: var(--page); }
+.sgroup .shead { display: flex; align-items: center; gap: 12px; }
+.sgroup .ic { width: 42px; height: 42px; border-radius: 12px; background: var(--ink); color: var(--on-dark); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 13px; flex-shrink: 0; }
+.sgroup h3 { font-size: 19px; letter-spacing: -0.02em; }
+.sgroup p { color: var(--ink-2); font-size: 14.5px; }
+.sgroup ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.sgroup li { font-size: 13.5px; font-weight: 600; padding: 6px 12px; border-radius: 9999px; background: var(--cream); }
+.sgroup li.core { background: var(--accent-soft); color: var(--accent-ink); }
+.legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; color: var(--ink-2); margin-bottom: 22px; }
+.legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
+@media (max-width: 1000px) { .sgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .sgrid { grid-template-columns: minmax(0, 1fr); } }
+
 @media (prefers-reduced-motion: no-preference) {
   .btn, .go, .work, .mini { transition: transform .22s ease, box-shadow .22s ease, background .22s ease; }
   .btn:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
@@ -212,6 +250,16 @@ p { margin: 0; text-wrap: pretty; }
   .hero-copy > *:nth-child(5) { animation-delay: .24s; }
 }
 @keyframes scroll { to { transform: translateX(-50%); } }
+@keyframes morph {
+  0%, 100% { border-radius: 58% 42% 46% 54% / 52% 48% 52% 48%; }
+  25% { border-radius: 44% 56% 62% 38% / 46% 58% 42% 54%; }
+  50% { border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%; }
+  75% { border-radius: 64% 36% 40% 60% / 56% 42% 58% 44%; }
+}
+@keyframes morph2 {
+  0%, 100% { border-radius: 42% 58% 54% 46% / 48% 52% 48% 52%; transform: rotate(0deg); }
+  50% { border-radius: 56% 44% 40% 60% / 58% 40% 60% 42%; transform: rotate(8deg); }
+}
 @keyframes rise { from { transform: translateY(16px); } }
 </style>
 
@@ -220,12 +268,13 @@ p { margin: 0; text-wrap: pretty; }
 <body>
 <header class="top">
   <div class="wrap">
-    <a class="logo" href="#home">USHAN</a>
+    <a class="logo" href="#home">USHAN JAYAMANNE</a>
     <ul class="nav">
-      <li><a href="#work">Selected work</a></li>
-      <li><a href="#services">What I do</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills-detail">Skills</a></li>
       <li><a href="#faq">FAQ</a></li>
     </ul>
     <a class="btn" href="#contact">Let's talk</a>
@@ -236,29 +285,34 @@ p { margin: 0; text-wrap: pretty; }
 <section class="hero" id="home">
   <div class="wrap">
     <div class="hero-copy">
-      <span class="eyebrow">Full stack / Data / AI-ML</span>
+      <span class="eyebrow">Full stack / Reporting &amp; Data / AI-ML</span>
       <h1>Reliable systems for <span>millions of messages</span></h1>
       <p class="lead">I'm Ushan Jayamanne, a Senior Software Engineer at Omobio. I build telecom platforms, real-time data pipelines and full stack products that turn heavy traffic into clear, fast results.</p>
       <div class="cta">
         <a class="btn" href="#contact">Hire me</a>
         <a class="btn outline" href="#work">See my work</a>
       </div>
-      <div class="trusted" aria-label="Clients I've delivered for">
-        <small>Delivered for</small>
-        <span>Banglalink</span><span>Mobitel</span><span>Airtel</span>
-        <small aria-hidden="true"></small>
-        <span>Ncell</span><span>Hutch</span><span>Hemas</span>
+      <div class="trusted">
+        <small id="clients-label">Trusted by clients in 4 countries</small>
+        <ul class="clients" aria-labelledby="clients-label">
+          <li><b>BD</b>Banglalink</li>
+          <li><b>LK</b>Mobitel</li>
+          <li><b>JE</b>Airtel</li>
+          <li><b>NP</b>Ncell</li>
+          <li><b>LK</b>Hutch</li>
+          <li><b>LK</b>Hemas Hospital</li>
+        </ul>
       </div>
     </div>
     <div class="hero-img">
-      <img src="ushan.jpg" alt="Portrait of Ushan Jayamanne" width="560" height="700">
-      <div class="badge"><i></i><div><strong>Open to new roles</strong><small>Kurunegala, Sri Lanka</small></div></div>
+      <svg class="blob-defs" aria-hidden="true" focusable="false"><defs><clipPath id="heroBlob" clipPathUnits="objectBoundingBox"><path d="M0.15,0.07 C0.3,0.01 0.62,-0.01 0.8,0.03 C0.95,0.07 1,0.2 0.98,0.33 C0.96,0.47 0.87,0.56 0.76,0.64 C0.64,0.72 0.58,0.84 0.46,0.94 C0.35,1.02 0.17,0.99 0.08,0.86 C-0.01,0.73 -0.01,0.56 0.02,0.43 C0.05,0.3 0.04,0.15 0.15,0.07 Z"><animate id="blobAnim" attributeName="d" dur="16s" repeatCount="indefinite" calcMode="spline" keyTimes="0;0.33;0.66;1" keySplines="0.45 0 0.55 1;0.45 0 0.55 1;0.45 0 0.55 1" values="M0.15,0.07 C0.3,0.01 0.62,-0.01 0.8,0.03 C0.95,0.07 1,0.2 0.98,0.33 C0.96,0.47 0.87,0.56 0.76,0.64 C0.64,0.72 0.58,0.84 0.46,0.94 C0.35,1.02 0.17,0.99 0.08,0.86 C-0.01,0.73 -0.01,0.56 0.02,0.43 C0.05,0.3 0.04,0.15 0.15,0.07 Z;M0.12,0.1 C0.28,0.02 0.58,0.02 0.78,0.06 C0.96,0.1 1,0.26 0.97,0.4 C0.94,0.54 0.9,0.62 0.8,0.72 C0.7,0.82 0.6,0.92 0.48,0.97 C0.34,1.02 0.14,0.95 0.06,0.8 C0,0.68 0.01,0.54 0.04,0.42 C0.07,0.28 0.02,0.16 0.12,0.1 Z;M0.18,0.05 C0.34,0 0.66,0.02 0.84,0.08 C0.98,0.13 0.99,0.24 0.96,0.36 C0.93,0.48 0.84,0.54 0.72,0.62 C0.6,0.7 0.55,0.82 0.42,0.92 C0.3,1 0.14,0.96 0.06,0.82 C-0.02,0.68 0.01,0.52 0.05,0.4 C0.09,0.27 0.06,0.12 0.18,0.05 Z;M0.15,0.07 C0.3,0.01 0.62,-0.01 0.8,0.03 C0.95,0.07 1,0.2 0.98,0.33 C0.96,0.47 0.87,0.56 0.76,0.64 C0.64,0.72 0.58,0.84 0.46,0.94 C0.35,1.02 0.17,0.99 0.08,0.86 C-0.01,0.73 -0.01,0.56 0.02,0.43 C0.05,0.3 0.04,0.15 0.15,0.07 Z"></animate></path></clipPath></defs></svg>
+      <img src="ushan.jpg" alt="Ushan Jayamanne at his desk with a laptop" width="600" height="648">
     </div>
     <div class="stats">
       <div><strong>3+</strong><span>Years of experience</span></div>
       <div><strong>40K</strong><span>Peak TPS handled</span></div>
-      <div><strong>70</strong><span>Reports in my billing engine</span></div>
-      <div><strong>9</strong><span>Engineers on my team</span></div>
+      <div><strong>6</strong><span>Enterprise clients</span></div>
+      <div><strong>12</strong><span>Industry projects delivered</span></div>
     </div>
   </div>
 </section>
@@ -287,9 +341,6 @@ p { margin: 0; text-wrap: pretty; }
               <rect x="316" y="95" width="44" height="275" rx="8" opacity="0.85"></rect>
               <rect x="380" y="60" width="44" height="310" rx="8"></rect>
             </g>
-            <g fill="#FFFDF9" opacity="0.55" font-family="Plus Jakarta Sans, sans-serif" font-size="14" font-weight="700">
-              <text x="62" y="395">MIN</text><text x="124" y="395">HOUR</text><text x="192" y="395">DAY</text><text x="250" y="395">MONTH</text><text x="320" y="395">YEAR</text><text x="374" y="395">BILLS</text>
-            </g>
           </svg>
         </div>
         <span class="tag">SMS Messaging Hub · 2026</span>
@@ -297,45 +348,78 @@ p { margin: 0; text-wrap: pretty; }
           <div>
             <h3>A reporting &amp; billing engine for an SMS hub</h3>
             <p>ClickHouse with minute → year materialized views and a Python engine serving 70 reports to PHP through one JSON contract.</p>
-          </div>
-          <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-        </div>
+          </div>        </div>
       </article>
 
       <article class="work">
         <div class="art" aria-hidden="true">
           <svg viewBox="0 0 600 460" preserveAspectRatio="xMidYMid slice" width="100%" height="100%">
             <rect width="600" height="460" fill="#1A1C1E"></rect>
-            <g stroke="#FFFDF9" stroke-opacity="0.14" stroke-width="1.5">
-              <line x1="150" y1="140" x2="230" y2="190"></line><line x1="230" y1="190" x2="190" y2="260"></line><line x1="150" y1="140" x2="190" y2="260"></line>
-              <line x1="380" y1="110" x2="440" y2="170"></line><line x1="440" y1="170" x2="400" y2="230"></line><line x1="380" y1="110" x2="400" y2="230"></line>
-              <line x1="230" y1="190" x2="380" y2="110"></line><line x1="400" y1="230" x2="320" y2="320"></line>
+            <g stroke="#FFFDF9" stroke-opacity="0.08" stroke-width="1">
+              <line x1="60" y1="110" x2="560" y2="110"></line><line x1="60" y1="170" x2="560" y2="170"></line><line x1="60" y1="230" x2="560" y2="230"></line><line x1="60" y1="290" x2="560" y2="290"></line>
             </g>
-            <circle cx="415" cy="170" r="88" fill="#B98B6E" fill-opacity="0.12" stroke="#B98B6E" stroke-opacity="0.7" stroke-width="2" stroke-dasharray="6 8"></circle>
-            <g fill="#FFFDF9" fill-opacity="0.7">
-              <circle cx="150" cy="140" r="7"></circle><circle cx="230" cy="190" r="7"></circle><circle cx="190" cy="260" r="7"></circle><circle cx="320" cy="320" r="7"></circle><circle cx="120" cy="330" r="5"></circle><circle cx="500" cy="300" r="5"></circle>
-            </g>
-            <g fill="#B98B6E">
-              <circle cx="380" cy="110" r="9"></circle><circle cx="440" cy="170" r="9"></circle><circle cx="400" cy="230" r="9"></circle><circle cx="430" cy="120" r="6"></circle><circle cx="370" cy="190" r="6"></circle>
-            </g>
+            <path d="M60,250 L120,215 L180,232 L240,170 L300,188 L360,130 L420,150 L480,98 L540,112 L540,300 L60,300 Z" fill="#B98B6E" fill-opacity="0.16"></path>
+            <path d="M60,250 L120,215 L180,232 L240,170 L300,188 L360,130 L420,150 L480,98 L540,112" fill="none" stroke="#B98B6E" stroke-width="3" stroke-linejoin="round"></path>
+            <path d="M60,280 L120,270 L180,276 L240,258 L300,264 L360,246 L420,252 L480,236 L540,240" fill="none" stroke="#FFFDF9" stroke-opacity="0.45" stroke-width="2" stroke-dasharray="5 6"></path>
+            <circle cx="480" cy="98" r="7" fill="#B98B6E"></circle>
+            <circle cx="480" cy="98" r="14" fill="none" stroke="#B98B6E" stroke-opacity="0.5" stroke-width="2"></circle>
           </svg>
         </div>
-        <span class="tag">SMS Firewall · 2026</span>
+        <span class="tag">Banglalink · 2026</span>
         <div class="bottom">
           <div>
-            <h3>Real-time AI/ML spam campaign detection</h3>
-            <p>HDBSCAN clusters look-alike messages, LightGBM scores them in under 1 ms, and an LLM double-checks every flagged campaign.</p>
-          </div>
-          <span class="go" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"></path></svg></span>
-        </div>
+            <h3>SMSC Dynamic Reporting Platform</h3>
+            <p>Real-time CDR analytics: Vector → ClickHouse → Superset dashboards for success rate, errors, TPS and operator traffic, tuned to a 4-minute SLA.</p>
+          </div>        </div>
       </article>
     </div>
 
     <div class="mini-grid">
-      <article class="mini"><small>Banglalink · 2026</small><h3>SMSC Dynamic Reporting</h3><p>Vector → ClickHouse → Superset dashboards for success rate, errors, TPS and operators, tuned to a 4-minute SLA.</p><span class="stack">Vector · ClickHouse · Superset</span></article>
+      <article class="mini"><small>SMS Firewall · 2026</small><h3>Real-time AI/ML Spam Campaign Detection</h3><p>HDBSCAN clusters look-alike messages, LightGBM scores them in under 1 ms, and an LLM double-checks every flagged campaign.</p><span class="stack">Python · LightGBM · HDBSCAN · LLM</span></article>
       <article class="mini"><small>Banglalink · 2025–26</small><h3>SMSC Product &amp; Reports</h3><p>Core SMS centre on 16 servers with automated reporting at up to 40,000 TPS.</p><span class="stack">Ext JS · PHP · Python</span></article>
       <article class="mini"><small>Hemas Hospital · 2024</small><h3>Healthcare Admin Portal</h3><p>Home care, virtual care, doctors and customers in one portal, plus payment-failure reporting.</p><span class="stack">ReactJS · Directus</span></article>
       <article class="mini"><small>Mobitel · Airtel · Ncell · Hutch</small><h3>Telecom SMSC &amp; Self-Care</h3><p>Features and change requests for operators in Sri Lanka, Jersey and Nepal, plus the OmobioNG website.</p><span class="stack">Ext JS · PHP · SvelteKit</span></article>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">All projects</span>
+        <h2 class="h2">18 projects, from first app to production scale</h2>
+        <p class="lead">Every project from my LinkedIn, newest first. Filter by the kind of work.</p>
+      </div>
+      <a class="arrow-link" href="https://www.linkedin.com/in/ushan-jayamanne-05502b1b7/" target="_blank" rel="noopener">View on LinkedIn →</a>
+    </div>
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button class="filter" type="button" id="f-all" data-f="all" aria-pressed="true">All<span>18</span></button>
+      <button class="filter" type="button" id="f-telecom" data-f="telecom" aria-pressed="false">Telecom<span>6</span></button>
+      <button class="filter" type="button" id="f-data" data-f="data" aria-pressed="false">Reporting &amp; Data<span>3</span></button>
+      <button class="filter" type="button" id="f-ai" data-f="ai" aria-pressed="false">AI / ML<span>1</span></button>
+      <button class="filter" type="button" id="f-web" data-f="web" aria-pressed="false">Web apps<span>2</span></button>
+      <button class="filter" type="button" id="f-personal" data-f="personal" aria-pressed="false">Personal<span>6</span></button>
+    </div>
+    <div class="plist">
+      <article class="pitem" data-cat="data"><div class="row"><span class="cat">Reporting &amp; Data</span><span class="date">Apr 2026 – Present</span></div><h3>SMS Messaging Hub – Reporting &amp; Billing Engine</h3><p>The reporting and billing backend that turns large volumes of message events into fast reports and accurate billing data.</p><ul><li>ClickHouse raw tables for message, audit and SMPP connection data</li><li>Cascading materialized views: minute → hour → day → month → year</li><li>Reusable Python report engine: JSON in/out, pagination, safe parameter binding</li><li>Catalogue of 70 reports; Docker auto-migrations; Conventional Commits; SonarQube</li></ul><div class="stack"><span>ClickHouse</span><span>SQL</span><span>Materialized Views</span><span>Data Modelling</span><span>Python</span><span>PHP</span><span>JSON APIs</span><span>SMPP</span><span>Docker</span><span>Docker Compose</span><span>DB Migrations</span><span>SonarQube</span><span>Git / GitHub</span><span>Conventional Commits</span></div></article>
+      <article class="pitem" data-cat="ai"><div class="row"><span class="cat" style="background: var(--ink); color: var(--on-dark);">AI / ML</span><span class="date">Apr 2026 – Present</span></div><h3>Firewall AI/ML – Campaign Detection</h3><p>An AI/ML system that identifies and filters malicious or spam SMS campaigns in telecom networks by analysing traffic patterns in real time.</p><ul><li>Processes CDRs every 5 minutes</li><li>Sentence Transformer embeddings + HDBSCAN clustering</li><li>LightGBM scoring in under 1 ms, three risk levels</li><li>LLM verification of flagged campaigns; Jenkins CI/CD</li></ul><div class="stack"><span>Python</span><span>Machine Learning</span><span>LightGBM</span><span>HDBSCAN</span><span>Sentence Transformers</span><span>Gemma LLM</span><span>Anomaly Detection</span><span>CDR Processing</span><span>Docker</span><span>Jenkins CI/CD</span><span>pytest</span><span>Linux</span></div></article>
+      <article class="pitem" data-cat="data"><div class="row"><span class="cat">Reporting &amp; Data</span><span class="date">Dec 2025 – May 2026</span></div><h3>Banglalink SMSC – Reports</h3><p>An automated reporting system for Banglalink's SMSC platform, generating detailed performance and traffic reports from 16 servers.</p><ul><li>Handles up to 40,000 TPS</li><li>Real-time insights for network operations teams</li></ul><div class="stack"><span>Python</span><span>SQL</span><span>MariaDB</span><span>Data Analysis</span><span>Reporting</span><span>Automation</span><span>TPS KPIs</span><span>SMSC</span><span>Linux</span></div></article>
+      <article class="pitem" data-cat="data"><div class="row"><span class="cat">Reporting &amp; Data</span><span class="date">Jan 2026 – Apr 2026</span></div><h3>Banglalink SMSC – Dynamic Reporting Platform</h3><p>A real-time CDR analytics pipeline for Banglalink's SMSC and Bulk SMSC.</p><ul><li>Vector agents → ClickHouse raw tables → materialized-view aggregators</li><li>Superset KPI dashboards: success rate, errors, TPS, operator traffic</li><li>Load-tested and tuned to a 4-minute write SLA</li></ul><div class="stack"><span>Vector</span><span>ClickHouse</span><span>Materialized Views</span><span>Apache Superset</span><span>KPI Dashboards</span><span>CDR Analytics</span><span>Load Testing</span><span>Performance Tuning</span><span>Linux</span></div></article>
+      <article class="pitem" data-cat="telecom"><div class="row"><span class="cat">Telecom</span><span class="date">Mar 2026 – Apr 2026</span></div><h3>Hutch HOPP</h3><p>Change request developments for the Hutch HOPP telecom platform: backend PHP features, issue fixes and smooth delivery of client requirements.</p><div class="stack"><span>PHP</span><span>Backend Development</span><span>Change Requests</span><span>Feature Development</span><span>Bug Fixing</span><span>Telecom</span></div></article>
+      <article class="pitem" data-cat="telecom"><div class="row"><span class="cat">Telecom</span><span class="date">Mar 2025 – Nov 2025</span></div><h3>Banglalink SMSC</h3><p>The core SMSC product for one of Bangladesh's leading telecom operators. Front-end and back-end components across 16 servers, built for high availability and large-scale SMS traffic.</p><div class="stack"><span>Ext JS</span><span>JavaScript</span><span>PHP</span><span>MariaDB</span><span>SQL</span><span>SMSC</span><span>SMPP</span><span>High Availability</span><span>Multi-server (16)</span></div></article>
+      <article class="pitem" data-cat="telecom"><div class="row"><span class="cat">Telecom</span><span class="date">Jan 2025 – Mar 2025</span></div><h3>Mobitel SMSC</h3><p>Front-end (Ext JS) and back-end (PHP) developer for Mobitel's SMSC product. Traffic handling and report management across 2 servers using SQLite, plus features, bug fixes and maintenance.</p><div class="stack"><span>Ext JS</span><span>JavaScript</span><span>PHP</span><span>SQLite</span><span>SMSC</span><span>Traffic Management</span><span>Reporting</span><span>Bug Fixing</span></div></article>
+      <article class="pitem" data-cat="telecom"><div class="row"><span class="cat">Telecom</span><span class="date">Nov 2024 – Dec 2024</span></div><h3>Airtel Self Care App</h3><p>Change requests for a customer-facing portal where users manage their telecom services: backend PHP features and issue fixes.</p><div class="stack"><span>PHP</span><span>Backend Development</span><span>Customer Portal</span><span>Change Requests</span><span>Feature Development</span></div></article>
+      <article class="pitem" data-cat="web"><div class="row"><span class="cat">Web app</span><span class="date">Feb 2024 – Oct 2024</span></div><h3>Hemas Hospital Admin Portal</h3><p>A comprehensive admin portal managing mobile app controllers, home care, virtual care, doctor management and customer management, with a clean, intuitive UI for hospital staff.</p><div class="stack"><span>ReactJS</span><span>JavaScript</span><span>REST APIs</span><span>Directus</span><span>Directus Flows</span><span>Admin Dashboard</span><span>Responsive UI</span><span>Healthcare</span></div></article>
+      <article class="pitem" data-cat="web"><div class="row"><span class="cat">Web app</span><span class="date">Jan 2024 – Feb 2024</span></div><h3>OmobioNG Website</h3><p>The new official website for Omobio (Pvt) Ltd, built as a frontend developer for a modern, responsive and high-performance web presence.</p><div class="stack"><span>SvelteKit</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>Responsive Design</span><span>SEO</span><span>Web Performance</span></div></article>
+      <article class="pitem" data-cat="telecom"><div class="row"><span class="cat">Telecom</span><span class="date">Apr 2023 – Dec 2023</span></div><h3>Airtel Jersey SMSC</h3><p>Front-end (Ext JS) and back-end (PHP) development of the SMSC product for Airtel Jersey: new features, change requests and system stability.</p><div class="stack"><span>Ext JS</span><span>JavaScript</span><span>PHP</span><span>SMSC</span><span>Full Stack</span><span>Change Requests</span><span>Feature Development</span></div></article>
+      <article class="pitem" data-cat="telecom"><div class="row"><span class="cat">Telecom</span><span class="date">Mar 2023</span></div><h3>Ncell</h3><p>An industrial-level project for Nepal's operator, covering front end and back end: bug fixing, change requests and feature development.</p><div class="stack"><span>ReactJS</span><span>JavaScript</span><span>PHP</span><span>Full Stack</span><span>Bug Fixing</span><span>Change Requests</span></div></article>
+      <article class="pitem" data-cat="personal"><div class="row"><span class="cat">Personal</span><span class="date">Nov 2022 – Jan 2023</span></div><h3>Blog Web Application</h3><p>A MERN blog with a Node.js and MongoDB REST API.</p><ul><li>Login, register, logout</li><li>Add, edit and delete posts</li><li>Sort by category or username; edit profile</li></ul><div class="stack"><span>MongoDB</span><span>Express.js</span><span>React</span><span>Node.js</span><span>REST API</span><span>Authentication</span><span>CRUD</span></div></article>
+      <article class="pitem" data-cat="personal"><div class="row"><span class="cat">Personal</span><span class="date">Sep 2022 – Nov 2022</span></div><h3>Video Sharing App (YouTube clone)</h3><p>A MERN video platform with a Node.js and MongoDB REST API.</p><ul><li>Subscribe / unsubscribe, like / dislike, comments</li><li>Video upload to Firebase Storage, URL saved in MongoDB</li><li>Search</li></ul><div class="stack"><span>MongoDB</span><span>Express.js</span><span>React</span><span>Node.js</span><span>REST API</span><span>Firebase Storage</span><span>File Upload</span><span>Search</span></div></article>
+      <article class="pitem" data-cat="personal"><div class="row"><span class="cat">Personal</span><span class="date">Jul 2022 – Sep 2022</span></div><h3>Social Media Web App</h3><p>A React.js social network on a Node.js REST API with MongoDB.</p><ul><li>Follow / unfollow friends</li><li>Like / unlike and upload posts</li></ul><div class="stack"><span>React</span><span>Node.js</span><span>MongoDB</span><span>REST API</span><span>Social Features</span></div></article>
+      <article class="pitem" data-cat="personal"><div class="row"><span class="cat">Personal</span><span class="date">Apr 2022 – Jun 2022</span></div><h3>Restaurant Management App</h3><p>A small restaurant management web app with a Vue.js front end and JSON Server API, tested with Postman.</p><div class="stack"><span>Vue.js</span><span>JavaScript</span><span>JSON Server</span><span>REST API</span><span>Postman</span><span>VS Code</span></div></article>
+      <article class="pitem" data-cat="personal"><div class="row"><span class="cat">Personal</span><span class="date">Mar 2022 – Apr 2022</span></div><h3>E-commerce Front End</h3><p>An e-commerce web application front end designed with Vue.js and Vuetify.</p><div class="stack"><span>Vue.js</span><span>Vuetify</span><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>Responsive UI</span></div></article>
+      <article class="pitem" data-cat="personal"><div class="row"><span class="cat">Personal</span><span class="date">Jan 2022 – Mar 2022</span></div><h3>Student Management System</h3><p>A stand-alone desktop application for managing students, built with JavaFX in IntelliJ IDEA and Scene Builder.</p><div class="stack"><span>Java</span><span>JavaFX</span><span>Scene Builder</span><span>IntelliJ IDEA</span><span>OOP</span><span>Desktop App</span></div></article>
     </div>
   </div>
 </section>
@@ -351,7 +435,7 @@ p { margin: 0; text-wrap: pretty; }
       <a class="arrow-link" href="#contact">Discuss a role →</a>
     </div>
     <div class="services">
-      <article class="service"><span class="num">01</span><h3>Full stack web apps</h3><p>Admin portals, dashboards and APIs that are fast, clear and easy to maintain.</p><ul><li>ReactJS</li><li>SvelteKit</li><li>Node.js</li><li>PHP</li></ul></article>
+      <article class="service"><span class="num">01</span><h3>Full stack web apps</h3><p>Admin portals, dashboards and APIs that are fast, clear and easy to maintain.</p><ul><li>ReactJS</li><li>Next.js</li><li>SvelteKit</li><li>Node.js</li><li>Python</li><li>PHP</li></ul></article>
       <article class="service"><span class="num">02</span><h3>Telecom platforms</h3><p>SMSC features, SMPP traffic, A2P and bulk SMS for operators at national scale.</p><ul><li>SMSC</li><li>SMPP</li><li>Ext JS</li><li>MariaDB</li></ul></article>
       <article class="service"><span class="num">03</span><h3>Data engineering</h3><p>Real-time CDR pipelines, reporting and billing that stay fast as data grows.</p><ul><li>ClickHouse</li><li>Vector</li><li>Superset</li><li>Python</li></ul></article>
       <article class="service"><span class="num">04</span><h3>AI/ML &amp; DevOps</h3><p>Fraud-detection models, LLM tooling, and Docker and CI/CD pipelines to ship them.</p><ul><li>LightGBM</li><li>LLMs</li><li>Docker</li><li>Jenkins</li></ul></article>
@@ -370,8 +454,8 @@ p { margin: 0; text-wrap: pretty; }
       <h2 class="h2">An engineer who creates value</h2>
       <p class="lead">I joined Omobio (Pvt) Ltd in 2023 as a trainee and today lead the team behind the Banglalink SMSC platform. I care about systems that are fast, simple to extend and pleasant for the next engineer to work on.</p>
       <div class="team-stat">
-        <div class="dots" aria-hidden="true"><span>UJ</span><span>+</span><span>8</span></div>
-        <div><strong>9 engineers on my team</strong><small>Banglalink SMSC / CBVC</small></div>
+        <div class="dots" aria-hidden="true"><span>LK</span><span>BD</span><span>NP</span><span>JE</span></div>
+        <div><strong>Clients in 4 countries</strong><small>Sri Lanka · Bangladesh · Nepal · Jersey</small></div>
       </div>
       <ul class="ticks">
         <li><div><strong>Design before code</strong><span>Right table engines, aggregate once, one simple contract.</span></div></li>
@@ -392,7 +476,7 @@ p { margin: 0; text-wrap: pretty; }
       </div>
     </div>
     <div class="roles">
-      <article class="role now"><div class="when">2026</div><h3>Senior Software Engineer<small>Omobio (Pvt) Ltd</small></h3><ul><li><strong>Lead a 9-member team</strong> on the Banglalink SMSC / CBVC platform.</li><li>Designed the SMS hub reporting &amp; billing engine on ClickHouse.</li><li>Built the real-time ML campaign detection pipeline with Docker and Jenkins.</li><li>Cut CDR ingestion CPU from ~90% to target under load.</li></ul></article>
+      <article class="role now"><div class="when">2026</div><h3>Senior Software Engineer<small>Omobio (Pvt) Ltd</small></h3><ul><li><strong>Lead the engineering team</strong> on the Banglalink SMSC / CBVC platform.</li><li>Designed the SMS hub reporting &amp; billing engine on ClickHouse.</li><li>Built the real-time ML campaign detection pipeline with Docker and Jenkins.</li><li>Cut CDR ingestion CPU from ~90% to target under load.</li></ul></article>
       <article class="role"><div class="when">Mar 2024</div><h3>Software Engineer<small>Omobio (Pvt) Ltd</small></h3><ul><li>Banglalink SMSC features across 16 servers and Python reporting.</li><li>Vector → ClickHouse → Superset real-time analytics.</li><li>Hemas Hospital Admin Portal in ReactJS.</li></ul></article>
       <article class="role"><div class="when">Sep 2023</div><h3>Associate Software Engineer<small>Omobio (Pvt) Ltd</small></h3><ul><li>Airtel Jersey SMSC (Ext JS / PHP) and the OmobioNG website in SvelteKit.</li></ul></article>
       <article class="role"><div class="when">Mar 2023</div><h3>Trainee Full Stack Developer<small>Omobio (Pvt) Ltd</small></h3><ul><li>Ncell and Airtel Jersey SMSC: bug fixes, change requests and testing.</li></ul></article>
@@ -406,7 +490,7 @@ p { margin: 0; text-wrap: pretty; }
     <div class="sec-head">
       <div>
         <span class="eyebrow">Toolbox</span>
-        <h2 class="h2">Tools that say more</h2>
+        <h2 class="h2">My everyday toolbox</h2>
         <p class="lead">The languages, platforms and tools I use every week.</p>
       </div>
     </div>
@@ -443,6 +527,30 @@ p { margin: 0; text-wrap: pretty; }
   </div>
 </section>
 
+<section class="section" id="skills-detail">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <span class="eyebrow">Skills</span>
+        <h2 class="h2">Everything I work with</h2>
+        <p class="lead">Grouped by area, with my strongest skills highlighted.</p>
+      </div>
+    </div>
+    <div class="legend"><span><i style="background: var(--accent-soft); border: 1px solid var(--accent);"></i>Core skill, used daily</span><span><i style="background: var(--cream); border: 1px solid var(--line);"></i>Working knowledge</span></div>
+    <div class="sgrid">
+      <div class="sgroup"><div class="shead"><span class="ic">&lt;/&gt;</span><h3>Languages</h3></div><p>The languages I write production code in.</p><ul><li class="core">Python</li><li class="core">PHP</li><li class="core">JavaScript (ES6+)</li><li class="core">SQL</li><li>TypeScript</li><li>Java</li><li>HTML5</li><li>CSS3</li></ul></div>
+      <div class="sgroup"><div class="shead"><span class="ic">UI</span><h3>Front-end</h3></div><p>Admin portals, dashboards and websites.</p><ul><li class="core">ReactJS</li><li class="core">Ext JS</li><li class="core">SvelteKit</li><li>Next.js</li><li>Vue.js</li><li>Vuetify</li><li>Responsive design</li></ul></div>
+      <div class="sgroup"><div class="shead"><span class="ic">API</span><h3>Back-end &amp; APIs</h3></div><p>Services, report engines and integrations.</p><ul><li class="core">Python</li><li class="core">PHP MVC</li><li class="core">REST APIs</li><li class="core">Node.js</li><li>Express.js</li><li>FastAPI</li><li>Microservices</li><li>JSON</li><li>Unit testing</li></ul></div>
+      <div class="sgroup"><div class="shead"><span class="ic">DE</span><h3>Data engineering</h3></div><p>Real-time pipelines, analytics and billing.</p><ul><li class="core">ClickHouse</li><li class="core">Materialized views</li><li class="core">Data modelling</li><li class="core">Apache Superset</li><li>Vector</li><li>ETL</li><li>Query optimisation</li><li>CDR analytics</li></ul></div>
+      <div class="sgroup"><div class="shead"><span class="ic">DB</span><h3>Databases</h3></div><p>Relational, NoSQL and cache stores.</p><ul><li class="core">ClickHouse</li><li class="core">MariaDB</li><li class="core">MySQL</li><li>MongoDB</li><li>Oracle DB</li><li>SQLite</li><li>Redis</li><li>Directus</li><li>Database migrations</li></ul></div>
+      <div class="sgroup"><div class="shead"><span class="ic">ML</span><h3>AI / ML</h3></div><p>Models that detect fraud and spam in real time.</p><ul><li class="core">LightGBM</li><li class="core">HDBSCAN</li><li>Sentence Transformers</li><li>XGBoost</li><li>scikit-learn</li><li>LLMs (Gemma, Ollama)</li><li>Anomaly detection</li></ul></div>
+      <div class="sgroup"><div class="shead"><span class="ic">Ops</span><h3>DevOps &amp; quality</h3></div><p>Shipping safely and keeping code clean.</p><ul><li class="core">Docker</li><li class="core">Git</li><li class="core">Linux</li><li>Docker Compose</li><li>Jenkins CI/CD</li><li>GitHub Actions</li><li>SonarQube</li><li>pytest</li></ul></div>
+      <div class="sgroup"><div class="shead"><span class="ic">SMS</span><h3>Telecom</h3></div><p>The domain I know best.</p><ul><li class="core">SMSC</li><li class="core">SMPP</li><li class="core">CDR processing</li><li>A2P / Bulk SMS</li><li>SMS firewall</li><li>Billing systems</li><li>Wireshark</li></ul></div>
+      <div class="sgroup"><div class="shead"><span class="ic">AI</span><h3>AI tools &amp; ways of working</h3></div><p>How I work with tools and people.</p><ul><li class="core">Team leadership</li><li class="core">Agile / Scrum</li><li class="core">Code review</li><li>Claude AI</li><li>ChatGPT</li><li>Google Gemini</li><li>Prompt engineering</li><li>Conventional Commits</li><li>Jira</li><li>Mentoring</li></ul></div>
+    </div>
+  </div>
+</section>
+
 <section class="section" id="faq">
   <div class="wrap faq-wrap">
     <div style="display: flex; flex-direction: column; gap: 14px;">
@@ -451,9 +559,9 @@ p { margin: 0; text-wrap: pretty; }
       <p class="lead">Quick answers for recruiters and hiring managers.</p>
     </div>
     <div class="faq">
-      <details open><summary>What is your main tech stack?</summary><p>Python, PHP and JavaScript, with ReactJS, SvelteKit and Ext JS on the front end, Node.js and FastAPI on the back end, and ClickHouse, MariaDB, MySQL and MongoDB for data. I ship with Docker and Jenkins.</p></details>
+      <details open><summary>What is your main tech stack?</summary><p>Python, PHP and JavaScript, with ReactJS, Next.js, SvelteKit and Ext JS on the front end, Python, PHP, Node.js and FastAPI on the back end, and ClickHouse, Apache Superset, MariaDB, MySQL and MongoDB for data. I ship with Docker and Jenkins.</p></details>
       <details><summary>What kind of systems have you built?</summary><p>SMS centre (SMSC) platforms for national operators, real-time CDR analytics, a reporting and billing engine with 70 reports, an ML spam-campaign detector and a hospital admin portal.</p></details>
-      <details><summary>Do you have leadership experience?</summary><p>Yes. I lead a nine-member team on the Banglalink SMSC platform, covering architecture, sprint delivery, code review and mentoring.</p></details>
+      <details><summary>Do you have leadership experience?</summary><p>Yes. I lead the engineering team on the Banglalink SMSC platform, covering architecture, sprint delivery, code review and mentoring.</p></details>
       <details><summary>What roles are you looking for?</summary><p>Software engineering roles in full stack, backend, data engineering or AI/ML, where I can own systems end to end.</p></details>
     </div>
   </div>
@@ -481,13 +589,22 @@ p { margin: 0; text-wrap: pretty; }
     </div>
     <div class="foot">
       <span>© <span id="year">2026</span> Ushan Jayamanne. All rights reserved.</span>
-      <nav aria-label="Footer"><a href="#work">Selected work</a><a href="#services">What I do</a><a href="#about">About</a><a href="#experience">Experience</a></nav>
+      <nav aria-label="Footer"><a href="#work">Work</a><a href="#projects">Projects</a><a href="#services">What I do</a><a href="#about">About</a><a href="#experience">Experience</a><a href="#skills-detail">Skills</a><a href="#faq">FAQ</a></nav>
     </div>
   </div>
 </footer>
 
 <script>
   document.getElementById('year').textContent = new Date().getFullYear();
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { var ba = document.getElementById('blobAnim'); if (ba) ba.remove(); }
+  var fbtns = document.querySelectorAll('.filter');
+  fbtns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.dataset.f;
+      fbtns.forEach(function (x) { x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      document.querySelectorAll('.pitem').forEach(function (p) { p.hidden = !(f === 'all' || p.dataset.cat === f); });
+    });
+  });
   document.querySelectorAll('[data-copy]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       var el = document.getElementById(btn.dataset.copy);
